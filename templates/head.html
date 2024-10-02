@@ -15,5 +15,33 @@
   <!-- DEFAULT CSS LINK -->
   <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
 
+  <!--
+  아래는 강의에는 없는 코드, 버전이 안맞아서 부트스트랩 적용 안되는 문제 해결
+  참고: https://arty6848.tistory.com/27
+  -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <style>
+    @font-face {
+      font-family: 'NanumSquareR';
+      src: local('NanumSquareR'),
+      url("{% static 'fonts/NanumSquareR.ttf' %}") format("opentype");
+    }
+    @font-face {
+      font-family: 'NanumSquareEB';
+      src: local('NanumSquareEB'),
+      url("{% static 'fonts/NanumSquareEB.otf' %}") format("opentype");
+    }
+    @font-face {
+    font-family: 'NanumSquareB';
+    src: local('NanumSquareB'),
+    url("{% static 'fonts/NanumSquareB.otf' %}") format("opentype");
+    }
+    @font-face {
+      font-family: 'NanumSquareR';
+      src: local('NanumSquareR'),
+      url("{% static 'fonts/NanumSquareR.otf' %}") format("opentype");
+    }
+  </style>
 
 </head>
