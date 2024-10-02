@@ -3,12 +3,12 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
-
 # Create your views here.
 from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView, DetailView
-from accountapp.models import HelloWorld
+from django.views.generic import CreateView, DetailView, UpdateView
 
+from accountapp.forms import AccountUpdateForm
+from accountapp.models import HelloWorld
 
 
 def hello_world(request):
@@ -36,3 +36,18 @@ class AccountDetailView(DetailView):
     model = User
     context_object_name = 'target_user'
     template_name = 'accountapp/detail.html'
+
+""" 원래 수업코드 입력시 changeinfo 기능이 적용안되어 수정
+class AccountUpdateView(UpdateView):
+    model = User
+    form_class = AccountUpdateForm
+    success_url = reverse_lazy('accountapp:hello_world')
+    template_name = 'accountapp/update.html'
+"""
+
+from django.contrib.auth.views import PasswordChangeView
+class AccountUpdateView(PasswordChangeView):
+    model = User
+    success_url = reverse_lazy('accountapp:hello_world')
+    template_name = 'accountapp/update.html'
+# 위의 코드로 수정하여 해결
