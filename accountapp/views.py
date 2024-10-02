@@ -48,11 +48,13 @@ class AccountUpdateView(UpdateView):
 from django.contrib.auth.views import PasswordChangeView
 class AccountUpdateView(PasswordChangeView):
     model = User
+    context_object_name = 'target_user'
     success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'accountapp/update.html'
 # 위의 코드로 수정하여 해결
 
 class AccountDeleteView(DeleteView):
     model = User
+    context_object_name = 'target_user'
     success_url = reverse_lazy('accountapp:login')
     template_name = 'accountapp/delete.html'
