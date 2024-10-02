@@ -12,12 +12,16 @@
                 <span>login</span>
             </a>
             {% else %}
-<!-- 강의 자료에는 이렇게 나와있지만 405 에러 발생
 
+
+            <a href="{% url 'accountapp:detail' pk=user.pk %}">
+                <span>Mypage</span>
+            </a>
+
+<!-- 강의 자료에는 아래와 같이 나와있지만 405 에러 발생
             <a href="{% url 'accountapp:logout' %}?next={{ request.path }}">
                 <span>logout</span>
             </a>
-
 원인: 장고 5부터는 LogoutView로의 요청은 POST 방식만 허용하기 때문
 참고: https://velog.io/@juhee_bda/%EA%B0%95%EC%9D%98-%EA%B3%B5%EB%B6%80-%EB%A1%9C%EA%B7%B8%EC%9D%B8%EB%A1%9C%EA%B7%B8%EC%95%84%EC%9B%83-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0
 참고: https://pyhub.kr/recipe/Y8b3dWNOkN4D5/
