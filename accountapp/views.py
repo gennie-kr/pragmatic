@@ -18,7 +18,8 @@ has_ownership = [account_ownership_required, login_required]
 class AccountCreateView(CreateView):
     model = User
     form_class = UserCreationForm
-    success_url = reverse_lazy('accountapp:hello_world')
+    #success_url = reverse_lazy('accountapp:hello_world')
+    success_url = reverse_lazy('home')
     template_name = 'accountapp/create.html'
 
 class AccountDetailView(DetailView):
@@ -32,12 +33,20 @@ class AccountDetailView(DetailView):
         object_list = Article.objects.filter(writer=self.get_object())
         return super(AccountDetailView, self).get_context_data(object_list=object_list, **kwargs)
 
-""" 원래 수업코드 입력시 changeinfo 기능이 적용안되어 수정
+
+@method_decorator(has_ownership, 'get')
+@method_decorator(has_ownership, 'post')
+#원래 수업코드 입력시 changeinfo 기능이 적용안되어 수정
 class AccountUpdateView(UpdateView):
     model = User
     form_class = AccountUpdateForm
-    success_url = reverse_lazy('accountapp:hello_world')
+    #success_url = reverse_lazy('accountapp:hello_world')
+    success_url = reverse_lazy('home')
     template_name = 'accountapp/update.html'
+
+    # 추가
+    context_object_name = 'target_user'
+
 """
 
 from django.contrib.auth.views import PasswordChangeView
@@ -45,12 +54,17 @@ from django.contrib.auth.views import PasswordChangeView
 @method_decorator(has_ownership, 'get')
 @method_decorator(has_ownership, 'post')
 class AccountUpdateView(PasswordChangeView):
+#class AccountUpdateView(UpdateView):
     model = User
+# 추가
+    form_class = AccountUpdateForm
+
     context_object_name = 'target_user'
-    success_url = reverse_lazy('accountapp:hello_world')
+#    success_url = reverse_lazy('accountapp:hello_world')
+    success_url = reverse_lazy('home')
     template_name = 'accountapp/update.html'
 # 위의 코드로 수정하여 해결
-
+"""
 @method_decorator(has_ownership, 'get')
 @method_decorator(has_ownership, 'post')
 class AccountDeleteView(DeleteView):
