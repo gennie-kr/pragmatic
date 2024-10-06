@@ -5,8 +5,7 @@ RUN git clone https://github.com/gennie-kr/pragmatic.git
 
 WORKDIR /home/pragmatic/
 
-RUN pip install --upgrade pip && \
-    pip install -r requirements.txt
+RUN pip install -r requirements.txt
 
 RUN echo "SELECT_KEY=django-insecure-=(u9g(cwspv(*n_j8&xhscd4m_lql%-^)mlomeo=)i_jdjhyq#" > .env
 
